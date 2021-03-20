@@ -5,7 +5,7 @@ function Cart() {
         <>
         <br />
         <br />
-          cart is empty !! shop now  ....
+          cart is empty !! shop now  .... go back
         </>
     )
 }
