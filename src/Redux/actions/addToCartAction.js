@@ -1,9 +1,9 @@
 import { ADD_TO_CART } from "../constants";
 
-export const addToCart=(id)=>{
-    console.log("action", id);
+export const addToCart=(product)=>{
+    console.log("action", product);
     return{
         type:ADD_TO_CART,
-        payload:id
+        payload:product
     }
 }

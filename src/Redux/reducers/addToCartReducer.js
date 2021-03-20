@@ -1,14 +1,12 @@
 import { ADD_TO_CART } from "../../Redux/constants";
-const initialState = {
-  productId: 0,
-};
-export const addTocartReducer = (state = initialState, action) => {
+
+export const addToCartReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      return {
-        productId: action.payload,
-      };
-
+      return[
+        ...state,
+        {product: action.payload}
+      ]
     default:
       return state;
   }
