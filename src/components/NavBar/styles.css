@@ -1,0 +1,23 @@
+.logo{
+    height: 40px;
+}
+.c-name{
+    padding: 10px;
+    font-family: "Helvetica";
+    font-style: italic;
+    font-size: 25px;
+    color: #525252;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.filler{
+    margin-left: 100px;
+}
+.spacer{
+    padding-right: 50px;
+}
+.my-navbar{
+    background-color:#f1f3f7;
+    font-size: 20px;
+    font-family: Alternate 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
