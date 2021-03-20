@@ -5,7 +5,7 @@ function Cart() {
         <>
         <br />
         <br />
-          cart  yuyiti
+          cart is empty
         </>
     )
 }
