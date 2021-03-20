@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import {checkout} from '../../Redux/actions/checkoutAction'
 
-function Cart({ products, addToCart }) {
+function Cart({ products, addToCart, checkout }) {
   let total = 0;
   console.log("product is", products);
   const handleCheckout = () => {
-    console.log("ijijj");
+    
   };
   const displayCart = () => {
     return (
@@ -98,7 +99,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    checkout: ()=>dispatch(checkout())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

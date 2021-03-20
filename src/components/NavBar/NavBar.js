@@ -108,7 +108,7 @@ function NavBar() {
         <div class="float-right">
           <Link to="/cart">
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge color="secondary">
+              <Badge color="secondary" badgeContent={1} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
