@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addToCart } from "../../Redux/actions/addToCartAction";
 
-function SearchBar({ products }) {
+function SearchBar({ products, addToCart }) {
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
@@ -70,7 +74,14 @@ function SearchBar({ products }) {
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">$ {value.price}</li>
                 </ul>
-                <button class="btn-primary">Add to cart</button>
+                <button
+                  class="btn-primary"
+                  onClick={() => {
+                    handleAddToCart(value);
+                  }}
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           );
@@ -83,5 +94,9 @@ const mapStateToProps = (state) => {
     products: state.fetchProductsReducer.products,
   };
 };
-
-export default connect(mapStateToProps, null)(SearchBar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (product) => dispatch(addToCart(product)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

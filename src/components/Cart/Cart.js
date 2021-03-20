@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 function Cart({ products, addToCart }) {
-  
+  let total = 0;
   console.log("product is", products);
+  const handleCheckout = () => {
+    console.log("ijijj");
+  };
   const displayCart = () => {
     return (
-      <div onLoad>
+      <div>
         <br />
         <br />
         {products.length !== 0 ? (
@@ -47,12 +50,18 @@ function Cart({ products, addToCart }) {
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">$ {product.product.price}</li>
+                  <p style={{ color: "white" }}>
+                    {(total = total + parseFloat(product.product.price))}
+                  </p>
                 </ul>
               </div>
             </div>
           ))
         ) : (
-          <p>cart is empty !! shop now .... go back</p>
+          <div style={{ padding: "50px" }}>
+            <h2>Cart is Empty ! </h2>
+            <h5>shop now...</h5>
+          </div>
         )}
       </div>
     );
@@ -63,7 +72,18 @@ function Cart({ products, addToCart }) {
       {products.length === 0 ? (
         <p></p>
       ) : (
-        <h1 style={{ padding: "50px" }}>Total Amount : </h1>
+        <h1 style={{ padding: "50px" }}>Total Amount : {total}</h1>
+      )}
+      {products.length !== 0 ? (
+        <div style={{ paddingBottom: "50px", paddingLeft: "50px" }}>
+          <button class="btn btn-lg btn-success" onClick={handleCheckout}>
+            Checkout
+          </button>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-lg btn-danger">Clear Cart</button>
+        </div>
+      ) : (
+        <p></p>
       )}
       <br />
       <br />
@@ -71,11 +91,14 @@ function Cart({ products, addToCart }) {
   );
 }
 const mapStateToProps = (state) => {
+  console.log("state is", state);
   return {
     products: state.addToCartReducer,
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
