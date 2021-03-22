@@ -13,6 +13,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const loginReducer = useSelector((state) => state.loginReducer);
   const cartQuantityReducer = useSelector((state) => state.cartQuantityReducer);
+  const userNameReducer = useSelector(state => state.userNameReducer)
   console.log("log in reducer", loginReducer);
   console.log("cart quantity", cartQuantityReducer);
   const logoutHandler = () => {
@@ -121,8 +122,10 @@ function NavBar() {
           title
           size="5"
         >
-          <Avatar></Avatar>
-          {}
+          <Avatar>
+            {userNameReducer.charAt(0)}
+          </Avatar>
+          
         </button>
         <div class="float-right">
           <Link to="/cart">

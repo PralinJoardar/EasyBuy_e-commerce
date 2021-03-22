@@ -5,3 +5,4 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const CART_QUANTITY = "CART_QUANTITY";
 export const CART_QUANTITY_CLEAR = "CART_QUANTITY_CLEAR";
+export const USER_NAME = "USER_NAME";

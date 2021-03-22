@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { loginAction } from "../../../Redux/actions/LoginAction";
 import { useDispatch } from "react-redux";
+import { userNameAction } from "../../../Redux/actions/userNameAction";
 
 function LogIn() {
   const [flag, setFlag] = useState(false);
@@ -32,9 +33,10 @@ function LogIn() {
       e.preventDefault();
       return false;
     }
-
+    var userName = `${fetchData.fName} ${fetchData.lName}`;
     setFlag(true);
     dispatch(loginAction());
+    dispatch(userNameAction(userName))
   }
   return (
     <div class="container float-center">
