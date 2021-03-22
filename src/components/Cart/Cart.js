@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import {checkout} from '../../Redux/actions/checkoutAction'
+import { checkout } from "../../Redux/actions/checkoutAction";
+import { Link } from "react-router-dom";
 
-function Cart({ products, addToCart, checkout }) {
+function Cart({ products, addToCart, checkout, clearCart, setCartCount }) {
   let total = 0;
   console.log("product is", products);
   const handleCheckout = () => {
-    
+    checkout();
+  };
+  const handleClearCart = () => {
+    clearCart();
+    setCartCount(0);
   };
   const displayCart = () => {
     return (
@@ -61,7 +66,7 @@ function Cart({ products, addToCart, checkout }) {
         ) : (
           <div style={{ padding: "50px" }}>
             <h2>Cart is Empty ! </h2>
-            <h5>shop now...</h5>
+            <h5><Link to="/products">shop now...</Link></h5>
           </div>
         )}
       </div>
@@ -73,15 +78,25 @@ function Cart({ products, addToCart, checkout }) {
       {products.length === 0 ? (
         <p></p>
       ) : (
-        <h1 style={{ padding: "50px" }}>Total Amount : {total}</h1>
+        <h1 style={{ padding: "50px" }}>Total Amount : {total.toFixed(2)}</h1>
       )}
       {products.length !== 0 ? (
         <div style={{ paddingBottom: "50px", paddingLeft: "50px" }}>
-          <button class="btn btn-lg btn-success" onClick={handleCheckout}>
-            Checkout
-          </button>
+          <Link to="/checkout">
+            <button
+              class="btn btn-lg btn-success"
+              onClick={() => handleCheckout()}
+            >
+              Checkout
+            </button>
+          </Link>
           &nbsp; &nbsp; &nbsp; &nbsp;
-          <button class="btn btn-lg btn-danger">Clear Cart</button>
+          <button
+            class="btn btn-lg btn-danger"
+            onClick={() => handleClearCart()}
+          >
+            Clear Cart
+          </button>
         </div>
       ) : (
         <p></p>
@@ -99,7 +114,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkout: ()=>dispatch(checkout())
+    checkout: () => dispatch(checkout()),
+    clearCart: () => dispatch(checkout()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

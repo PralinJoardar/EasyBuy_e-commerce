@@ -3,18 +3,18 @@ import SearchBar from "../SearchBar/SearchBar";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../Redux/actions/fetchProductsAction";
 import { addToCart } from "../../Redux/actions/addToCartAction";
-function Products({ products, getProducts, addToCart }) {
+function Products({ products, getProducts, addToCart, setCartCount }) {
   useEffect(() => {
     getProducts();
   }, []);
- 
+
   const handleAddToCart = (product) => {
     addToCart(product);
   };
-  
+
   return (
     <>
-      <SearchBar />
+      <SearchBar setCartCount={setCartCount} />
       {console.log(products)}
       <br />
       <br />
@@ -60,6 +60,7 @@ function Products({ products, getProducts, addToCart }) {
               class="btn-primary"
               onClick={() => {
                 handleAddToCart(product);
+                setCartCount((prevCount) => prevCount + 1);
               }}
             >
               Add to cart

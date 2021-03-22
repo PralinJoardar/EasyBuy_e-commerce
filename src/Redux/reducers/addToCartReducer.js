@@ -5,7 +5,7 @@ export const addToCartReducer = (state = [], action) => {
     case ADD_TO_CART:
       return [...state, { product: action.payload }];
     case CHECKOUT:
-      return state;
+      return action.payload;
     default:
       return state;
   }

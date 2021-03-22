@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconButton, Badge, Avatar } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/images/logo.png";
@@ -6,7 +6,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-function NavBar() {
+function NavBar({ cartCount }) {
   return (
     <>
       <br />
@@ -73,13 +73,13 @@ function NavBar() {
               </div>
             </li>
             <div class="spacer"></div>
-              <li class="nav-item">
-                <Link to="/signup">
-                  <a class="nav-link">
-                    Sign Up / Log In <span class="sr-only">(current)</span>
-                  </a>
-                </Link>
-              </li>
+            <li class="nav-item">
+              <Link to="/signup">
+                <a class="nav-link">
+                  Sign Up / Log In <span class="sr-only">(current)</span>
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
         <button
@@ -89,9 +89,7 @@ function NavBar() {
           data-placement="top"
           title="Log Out"
         >
-          <ExitToAppIcon
-            
-          />
+          <ExitToAppIcon />
         </button>
         &nbsp;
         <button
@@ -108,7 +106,11 @@ function NavBar() {
         <div class="float-right">
           <Link to="/cart">
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge color="secondary" badgeContent={1} color="secondary">
+              <Badge
+                color="secondary"
+                badgeContent={cartCount}
+                color="secondary"
+              >
                 <ShoppingCart />
               </Badge>
             </IconButton>
