@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Checkout({ setCartCount }) {
-  setCartCount(0);
+function Checkout() {
   return (
     <div>
       <div style={{ padding: "50px" }}>

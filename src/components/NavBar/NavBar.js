@@ -5,8 +5,16 @@ import logo from "../../assets/images/logo.png";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useSelector,useDispatch } from "react-redux";
+import { logoutAction } from "../../Redux/actions/logoutAction";
 
-function NavBar({ cartCount }) {
+function NavBar() {
+  const dispatch = useDispatch();
+  const loginReducer = useSelector((state) => state.loginReducer);
+  console.log("log in reducer", loginReducer);
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
   return (
     <>
       <br />
@@ -73,13 +81,17 @@ function NavBar({ cartCount }) {
               </div>
             </li>
             <div class="spacer"></div>
-            <li class="nav-item">
-              <Link to="/signup">
-                <a class="nav-link">
-                  Sign Up / Log In <span class="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
+            {loginReducer === false ? (
+              <li class="nav-item">
+                <Link to="/signup">
+                  <a class="nav-link">
+                    Sign Up / Log In <span class="sr-only">(current)</span>
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              <a></a>
+            )}
           </ul>
         </div>
         <button
@@ -89,7 +101,11 @@ function NavBar({ cartCount }) {
           data-placement="top"
           title="Log Out"
         >
-          <ExitToAppIcon />
+          <ExitToAppIcon
+            onClick={() => {
+              logoutHandler();
+            }}
+          />
         </button>
         &nbsp;
         <button
@@ -108,7 +124,7 @@ function NavBar({ cartCount }) {
             <IconButton aria-label="Show cart items" color="inherit">
               <Badge
                 color="secondary"
-                badgeContent={cartCount}
+                badgeContent={1}
                 color="secondary"
               >
                 <ShoppingCart />

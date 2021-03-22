@@ -15,13 +15,13 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar cartCount={cartCount} />
+        <NavBar/>
         <Switch>
           <Route path="/" exact>
             <HomePage />
           </Route>
           <Route path="/products" exact>
-            <Products setCartCount={setCartCount} />
+            <Products />
           </Route>
           <Route path="/aboutUs" exact>
             <AboutUs />
@@ -36,10 +36,10 @@ function App() {
             <LogIn />
           </Route>
           <Route path="/cart" exact>
-            <Cart setCartCount={setCartCount} />
+            <Cart />
           </Route>
           <Route path="/checkout" exact>
-            <Checkout setCartCount={setCartCount} />
+            <Checkout />
           </Route>
         </Switch>
         <Footer />

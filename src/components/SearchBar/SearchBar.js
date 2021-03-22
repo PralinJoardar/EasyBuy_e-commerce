@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../Redux/actions/addToCartAction";
 
-function SearchBar({ products, addToCart, setCartCount }) {
+function SearchBar({ products, addToCart }) {
   const handleAddToCart = (product) => {
     addToCart(product);
   };
@@ -78,7 +78,6 @@ function SearchBar({ products, addToCart, setCartCount }) {
                   class="btn-primary"
                   onClick={() => {
                     handleAddToCart(value);
-                    setCartCount(prevCount=>prevCount+1)
                   }}
                 >
                   Add to cart

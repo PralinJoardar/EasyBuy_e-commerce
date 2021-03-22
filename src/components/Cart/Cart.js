@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { checkout } from "../../Redux/actions/checkoutAction";
 import { Link } from "react-router-dom";
 
-function Cart({ products, addToCart, checkout, clearCart, setCartCount }) {
+function Cart({ products, addToCart, checkout, clearCart }) {
   let total = 0;
   console.log("product is", products);
   const handleCheckout = () => {
@@ -11,7 +11,6 @@ function Cart({ products, addToCart, checkout, clearCart, setCartCount }) {
   };
   const handleClearCart = () => {
     clearCart();
-    setCartCount(0);
   };
   const displayCart = () => {
     return (

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import { loginAction } from "../../../Redux/actions/LoginAction";
+import { useDispatch } from "react-redux";
 
-function LogIn({ setName }) {
+function LogIn() {
   const [flag, setFlag] = useState(false);
+  const dispatch = useDispatch();
   function loginValidateForm(e) {
     var email = document.getElementById("email").value;
     var pass = document.getElementById("pass").value;
@@ -24,13 +27,14 @@ function LogIn({ setName }) {
 
     if (fetchData.email == email && fetchData.pass == pass) {
       alert(`Welcome ${fetchData.fName} ${fetchData.lName}`);
-      setName(`${fetchData.fName} ${fetchData.lName}`);
     } else {
       alert("Please provide valid Username & Password");
       e.preventDefault();
       return false;
     }
+
     setFlag(true);
+    dispatch(loginAction());
   }
   return (
     <div class="container float-center">
@@ -71,10 +75,7 @@ function LogIn({ setName }) {
         />{" "}
         <br />
         <br />
-        <button
-          type="submit"
-          class="btn btn-primary"
-        >
+        <button type="submit" class="btn btn-primary">
           Login
         </button>
         <br />
