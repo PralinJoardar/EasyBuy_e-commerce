@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { checkout } from "../../Redux/actions/checkoutAction";
+import { checkoutAction } from "../../Redux/actions/checkoutAction";
 import { Link } from "react-router-dom";
+import { cartQuantityAction } from "../../Redux/actions/cartQuantityAction";
+import { cartQuantityClearAction } from "../../Redux/actions/cartQuantityClearAction";
 
-function Cart({ products, addToCart, checkout, clearCart }) {
+function Cart({ products, addToCart, checkout, clearCart, cartQuantityClear }) {
   let total = 0;
   console.log("product is", products);
   const handleCheckout = () => {
     checkout();
+    cartQuantityClear();
   };
   const handleClearCart = () => {
     clearCart();
+    cartQuantityClear();
   };
   const displayCart = () => {
     return (
@@ -65,7 +69,9 @@ function Cart({ products, addToCart, checkout, clearCart }) {
         ) : (
           <div style={{ padding: "50px" }}>
             <h2>Cart is Empty ! </h2>
-            <h5><Link to="/products">shop now...</Link></h5>
+            <h5>
+              <Link to="/products">shop now...</Link>
+            </h5>
           </div>
         )}
       </div>
@@ -113,8 +119,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkout: () => dispatch(checkout()),
-    clearCart: () => dispatch(checkout()),
+    checkout: () => dispatch(checkoutAction()),
+    clearCart: () => dispatch(checkoutAction()),
+    cartQuantityClear: () => dispatch(cartQuantityClearAction()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

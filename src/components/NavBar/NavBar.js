@@ -5,15 +5,20 @@ import logo from "../../assets/images/logo.png";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logoutAction } from "../../Redux/actions/logoutAction";
-
+import { cartQuantityClearAction } from "../../Redux/actions/cartQuantityClearAction";
+import { checkoutAction } from "../../Redux/actions/checkoutAction";
 function NavBar() {
   const dispatch = useDispatch();
   const loginReducer = useSelector((state) => state.loginReducer);
+  const cartQuantityReducer = useSelector((state) => state.cartQuantityReducer);
   console.log("log in reducer", loginReducer);
+  console.log("cart quantity", cartQuantityReducer);
   const logoutHandler = () => {
     dispatch(logoutAction());
+    dispatch(cartQuantityClearAction());
+    dispatch(checkoutAction());
   };
   return (
     <>
@@ -124,7 +129,7 @@ function NavBar() {
             <IconButton aria-label="Show cart items" color="inherit">
               <Badge
                 color="secondary"
-                badgeContent={1}
+                badgeContent={cartQuantityReducer}
                 color="secondary"
               >
                 <ShoppingCart />

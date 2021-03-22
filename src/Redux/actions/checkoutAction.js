@@ -1,5 +1,5 @@
 import { CHECKOUT } from "../constants";
-export const checkout = ()=>{
+export const checkoutAction = ()=>{
     return{
         type:CHECKOUT,
         payload:[]

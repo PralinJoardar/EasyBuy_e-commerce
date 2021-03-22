@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../Redux/actions/addToCartAction";
+import { cartQuantityAction } from "../../Redux/actions/cartQuantityAction";
 
-function SearchBar({ products, addToCart }) {
+function SearchBar({ products, addToCart, cartQuantity }) {
   const handleAddToCart = (product) => {
     addToCart(product);
+    cartQuantity();
   };
   const [searchTerm, setSearchTerm] = useState("");
   return (
@@ -97,6 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => dispatch(addToCart(product)),
+    cartQuantity: () => dispatch(cartQuantityAction()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

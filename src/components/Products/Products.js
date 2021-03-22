@@ -3,13 +3,15 @@ import SearchBar from "../SearchBar/SearchBar";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../Redux/actions/fetchProductsAction";
 import { addToCart } from "../../Redux/actions/addToCartAction";
-function Products({ products, getProducts, addToCart }) {
+import { cartQuantityAction } from "../../Redux/actions/cartQuantityAction";
+function Products({ products, getProducts, addToCart, cartQuantity }) {
   useEffect(() => {
     getProducts();
   }, []);
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    cartQuantity();
   };
 
   return (
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(fetchProducts()),
     addToCart: (product) => dispatch(addToCart(product)),
+    cartQuantity: () => dispatch(cartQuantityAction())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
