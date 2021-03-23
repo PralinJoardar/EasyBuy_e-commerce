@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { checkoutAction } from "../../Redux/actions/checkoutAction";
 import { Link } from "react-router-dom";
-import { cartQuantityAction } from "../../Redux/actions/cartQuantityAction";
 import { cartQuantityClearAction } from "../../Redux/actions/cartQuantityClearAction";
 
 function Cart({ products, addToCart, checkout, clearCart, cartQuantityClear }) {

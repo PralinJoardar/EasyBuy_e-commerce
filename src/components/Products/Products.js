@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchProducts } from "../../Redux/actions/fetchProductsAction";
 import { addToCart } from "../../Redux/actions/addToCartAction";
 import { cartQuantityAction } from "../../Redux/actions/cartQuantityAction";
-function Products({ products, getProducts, addToCart, cartQuantity }) {
+function Products({
+  products,
+  loading,
+  error,
+  errorMessage,
+  getProducts,
+  addToCart,
+  cartQuantity,
+}) {
   useEffect(() => {
     getProducts();
   }, []);
@@ -17,6 +26,32 @@ function Products({ products, getProducts, addToCart, cartQuantity }) {
   return (
     <>
       <SearchBar />
+      {loading ? (
+        <div class="container">
+          <br />
+          <br />
+          <br />
+          <h3>Loading Items !</h3>
+          <h6> Please Wait...</h6>
+        </div>
+      ) : (
+        <p></p>
+      )}
+      {error ? (
+        <div class="container">
+          {console.log(errorMessage)}
+          <br />
+          <br />
+          <br />
+          <h3>Oops Something is wrong !</h3>
+          <Link to="/">
+            <h6> Back to Home...</h6>
+          </Link>
+        </div>
+      ) : (
+        <p></p>
+      )}
+
       {console.log(products)}
       <br />
       <br />
@@ -77,13 +112,16 @@ function Products({ products, getProducts, addToCart, cartQuantity }) {
 const mapStateToProps = (state) => {
   return {
     products: state.fetchProductsReducer.products,
+    loading: state.fetchProductsReducer.loading,
+    error: state.fetchProductsReducer.error,
+    errorMessage: state.fetchProductsReducer.errorMessage,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(fetchProducts()),
     addToCart: (product) => dispatch(addToCart(product)),
-    cartQuantity: () => dispatch(cartQuantityAction())
+    cartQuantity: () => dispatch(cartQuantityAction()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

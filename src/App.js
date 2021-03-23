@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import HomePage from "./components/HomePage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -10,8 +10,8 @@ import SignUp from "./components/SignUp/SignUp";
 import LogIn from "./components/SignUp/LogIn/LogIn";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
+
 function App() {
-  const [cartCount, setCartCount] = useState(0);
   return (
     <>
       <Router>
