@@ -9,11 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutAction } from "../../Redux/actions/logoutAction";
 import { cartQuantityClearAction } from "../../Redux/actions/cartQuantityClearAction";
 import { checkoutAction } from "../../Redux/actions/checkoutAction";
+import { userNameAction } from "../../Redux/actions/userNameAction";
 function NavBar() {
   const dispatch = useDispatch();
   const loginReducer = useSelector((state) => state.loginReducer);
   const cartQuantityReducer = useSelector((state) => state.cartQuantityReducer);
-  const userNameReducer = useSelector(state => state.userNameReducer)
+  const userNameReducer = useSelector((state) => state.userNameReducer);
+  console.log("userNameRemove", userNameReducer);
   console.log("log in reducer", loginReducer);
   console.log("cart quantity", cartQuantityReducer);
   const logoutHandler = () => {
@@ -110,6 +112,7 @@ function NavBar() {
           <ExitToAppIcon
             onClick={() => {
               logoutHandler();
+              dispatch(userNameAction(""));
             }}
           />
         </button>
@@ -119,13 +122,10 @@ function NavBar() {
           data-toggle="tooltip"
           class="border-0"
           data-placement="top"
-          title
+          title={userNameReducer}
           size="5"
         >
-          <Avatar>
-            {userNameReducer.charAt(0)}
-          </Avatar>
-          
+          <Avatar>{userNameReducer.charAt(0)}</Avatar>
         </button>
         <div class="float-right">
           <Link to="/cart">
