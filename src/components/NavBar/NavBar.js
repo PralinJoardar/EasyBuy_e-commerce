@@ -113,6 +113,7 @@ function NavBar() {
             onClick={() => {
               logoutHandler();
               dispatch(userNameAction(""));
+              localStorage.clear();
             }}
           />
         </button>

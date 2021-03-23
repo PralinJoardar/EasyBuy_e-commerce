@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import carousel1 from "../../assets/images/carousel1.jpg";
 import carousel2 from "../../assets/images/carousel2.jpg";
 import carousel3 from "../../assets/images/carousel3.jpg";
-import pant from "../../assets/images/pant.jpeg";
-import kurtis from "../../assets/images/kurtis.jpeg";
-import sweatshirt from "../../assets/images/Sweatshirt.jpeg";
+import faceStudio from "../../assets/images/faceStudio.png";
+import eyeShadowQuad from "../../assets/images/eyeShadowQuad.png";
+import foundation from "../../assets/images/foundation.png";
 
 function HomePage() {
   return (
@@ -112,33 +112,45 @@ function HomePage() {
         </div>
         <div class="row">
           <div class="col-12 col-md-4 p-5 mt-3">
-            <Link to="/fashion">
+            <Link to="/products">
               <a>
-                <img src={pant} class="rounded-circle img-fluid border" />
+                <img
+                  src={faceStudio}
+                  class="rounded-circle img-fluid border"
+                  width="300px"
+                />
               </a>
-              <h5 class="text-center mt-3 mb-3">Pants</h5>
+              <h5 class="text-center mt-3 mb-3">FaceStudio</h5>
               <p class="text-center">
                 <a class="btn btn-success">Go Shop</a>
               </p>
             </Link>
           </div>
           <div class="col-12 col-md-4 p-5 mt-3">
-            <Link to="/fashion">
+            <Link to="/products">
               <a>
-                <img src={kurtis} class="rounded-circle img-fluid border" />
+                <img
+                  src={eyeShadowQuad}
+                  class="rounded-circle img-fluid border"
+                  width="300px"
+                />
               </a>
-              <h2 class="h5 text-center mt-3 mb-3">Kurtis</h2>
+              <h2 class="h5 text-center mt-3 mb-3">EyeShadowQuad</h2>
               <p class="text-center">
                 <a class="btn btn-success">Go Shop</a>
               </p>
             </Link>
           </div>
           <div class="col-12 col-md-4 p-5 mt-3">
-            <Link to="/fashion">
+            <Link to="/products">
               <a>
-                <img src={sweatshirt} class="rounded-circle img-fluid border" />
+                <img
+                  src={foundation}
+                  class="rounded-circle img-fluid border"
+                  width="300px"
+                />
               </a>
-              <h2 class="h5 text-center mt-3 mb-3">Sweatshirts</h2>
+              <h2 class="h5 text-center mt-3 mb-3">Foundation</h2>
               <p class="text-center">
                 <a class="btn btn-success">Go Shop</a>
               </p>
